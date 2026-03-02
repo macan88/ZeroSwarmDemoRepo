@@ -20,12 +20,14 @@ function calculateDiscount(cartTotal) {
 
 /**
  * Calculate final price after discount
- * BUG: Adds discount instead of subtracting it!
+ * FIX: Changed `+` to `-` so the discount is subtracted from the cart total,
+ * not added to it. Previously, a $100 order with a $10 discount incorrectly
+ * returned $110; now it correctly returns $90.
  */
 function calculateFinalPrice(cartTotal) {
   const discount = calculateDiscount(cartTotal);
-  // BUG: Should be cartTotal - discount
-  return cartTotal + discount;
+  // FIXED: was `cartTotal + discount` (bug), now correctly subtracts discount
+  return cartTotal - discount;
 }
 
 // API Endpoints
